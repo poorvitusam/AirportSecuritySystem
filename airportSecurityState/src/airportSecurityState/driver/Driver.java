@@ -1,5 +1,7 @@
 package src.airportSecurityState.driver;
 
+import src.airportSecurityState.airportStates.SecurityFactors;
+import src.airportSecurityState.airportStates.SecurityState;
 import src.airportSecurityState.util.FileProcessor;
 
 public class Driver {
@@ -19,5 +21,7 @@ public class Driver {
 		FileProcessor reader = new FileProcessor(inputFile, "read", "read");;
 		FileProcessor writer = new FileProcessor(outputFile, "write", "output");
 		
+		SecurityState state = new SecurityState();
+		SecurityFactors sf = new SecurityFactors(reader, state);
 	}
 }
