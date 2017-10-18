@@ -1,5 +1,7 @@
 package src.airportSecurityState.driver;
 
+import src.airportSecurityState.util.FileProcessor;
+
 public class Driver {
 	/**
 	 * main method
@@ -12,10 +14,10 @@ public class Driver {
 		}
 		
 		String inputFile = args[0];
-		String deleteFile = args[1];
+		String outputFile = args[1];
 		
 		FileProcessor reader = new FileProcessor(inputFile, "read", null);;
-		FileProcessor writer = new FileProcessor(outputFile1, "write", "output");
+		FileProcessor writer = new FileProcessor(outputFile, "write", "output");
 		
 	}
 }
