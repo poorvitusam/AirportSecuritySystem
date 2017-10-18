@@ -12,7 +12,7 @@ public class AirportSecurityProcess {
 	private int day;
 	private ArrayList<String> prohibited_items=new ArrayList<String>();
 	
-	public AirportSecurityProcess(FileProcessor fp, SecurityState state, Results results) {
+	public AirportSecurityProcess(FileProcessor fp, SecurityStateContext state, Results results) {
 		prohibited_items.add("Gun");
 		prohibited_items.add("NailCutter");
 		prohibited_items.add("Blade");
@@ -34,9 +34,31 @@ public class AirportSecurityProcess {
 		}
 	}
 	
-	public void securityProcess(SecurityState state, Results results) {
-		String finalState = state.tightenOrLoosenSecurity(total_num_of_travellers, 
-				total_num_of_days, total_num_of_prohibited_items);
-		results.storeResult(finalState);
+	public int getAverageTrafficPerDay() {
+		return total_num_of_travellers * total_num_of_days;
+	}
+	
+	public int getAverageProhibitedItemsPerDay() {
+		return total_num_of_prohibited_items * total_num_of_days;
+	}
+	
+	public void securityProcess(SecurityStateContext state, Results results) {
+		int avg_traffic_per_day = getAverageTrafficPerDay();
+		int avg_prohibited_items = getAverageProhibitedItemsPerDay();
+		
+
+		String LOW_RISK = "1 3 5 7 9";
+		String MODERATE_RISK = "2 3 5 8 9";
+		String HIGH_RISK = "2 4 6 8 10";
+		
+		AirportStateI finalState = state.tightenOrLoosenSecurity(avg_traffic_per_day, 
+				avg_prohibited_items);
+		if (finalState instanceof LowRisk) {
+			results.storeResult(LOW_RISK);
+		} else if (finalState instanceof ModerateRisk) {
+			results.storeResult(MODERATE_RISK);
+		} else {
+			results.storeResult(HIGH_RISK);
+		}
 	}
 }

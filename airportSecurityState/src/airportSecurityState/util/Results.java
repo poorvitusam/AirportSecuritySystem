@@ -1,6 +1,6 @@
 package src.airportSecurityState.util;
 
-
+import src.airportSecurityState.util.MyLogger;
 import java.io.BufferedWriter;
 import java.util.ArrayList;
 
@@ -13,6 +13,7 @@ public class Results implements FileDisplayInterface {
 	 * @param fileProcessor
 	 */
 	public Results(FileProcessor fileProcessor) {
+		MyLogger.writeMessage("Contructor of Results", MyLogger.DebugLevel.CONSTRUCTOR);
 		fp = fileProcessor;
 		results = new ArrayList<String>();
 	}
