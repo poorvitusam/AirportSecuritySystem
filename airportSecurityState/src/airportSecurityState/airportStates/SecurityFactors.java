@@ -11,7 +11,11 @@ public class SecurityFactors {
 	private int total_num_of_days;
 	private int total_num_of_prohibited_items;
 	private int day;
+	String current_state;
 	private ArrayList<String> prohibited_items=new ArrayList<String>();
+	public static String LOW_RISK = "low_risk";
+	public static String MODERATE_RISK = "moderate_risk";
+	public static String HIGH_RISK = "high_risk";
 	
 	public SecurityFactors(FileProcessor fp) {
 		prohibited_items.add("Gun");
@@ -31,6 +35,28 @@ public class SecurityFactors {
 			if(prohibited_items.contains(item)) {
 				total_num_of_prohibited_items++;
 			}
+		}
+	}
+	
+	public int getAverageTrafficPerDay() {
+		return total_num_of_travellers * total_num_of_days;
+	}
+	
+	public int getAverageProhibitedItemsPerDay() {
+		return total_num_of_prohibited_items * total_num_of_days;
+	}
+	
+	public void checkAirportState() {
+		int avg_traffic_per_day = getAverageTrafficPerDay();
+		int avg_prohibited_items = getAverageProhibitedItemsPerDay();
+		if(0 <= avg_traffic_per_day && avg_traffic_per_day < 4 || 0 <= avg_prohibited_items && avg_prohibited_items < 1) {
+			current_state = LOW_RISK;
+		}
+		if(4 <= avg_traffic_per_day && avg_traffic_per_day < 8 || 1 <= avg_prohibited_items && avg_prohibited_items < 2) {
+			current_state = MODERATE_RISK;
+		}
+		if(avg_traffic_per_day >= 8 || avg_prohibited_items >= 2) {
+			current_state = HIGH_RISK;
 		}
 	}
 }
