@@ -16,7 +16,7 @@ public class Driver {
 		String inputFile = args[0];
 		String outputFile = args[1];
 		
-		FileProcessor reader = new FileProcessor(inputFile, "read", null);;
+		FileProcessor reader = new FileProcessor(inputFile, "read", "read");;
 		FileProcessor writer = new FileProcessor(outputFile, "write", "output");
 		
 	}
