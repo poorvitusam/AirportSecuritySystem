@@ -13,9 +13,9 @@ public class SecurityFactors {
 	private int day;
 	String current_state;
 	private ArrayList<String> prohibited_items=new ArrayList<String>();
-	public static String LOW_RISK = "low_risk";
-	public static String MODERATE_RISK = "moderate_risk";
-	public static String HIGH_RISK = "high_risk";
+	public static String LOW_RISK = "1 3 5 7 9";
+	public static String MODERATE_RISK = "2 3 5 8 9";
+	public static String HIGH_RISK = "2 4 6 8 10";
 	
 	public SecurityFactors(FileProcessor fp) {
 		prohibited_items.add("Gun");
