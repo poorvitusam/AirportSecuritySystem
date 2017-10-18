@@ -44,34 +44,8 @@ public class Results implements FileDisplayInterface {
 	 * Form the the string with the node to store
 	 * @param node B number and courses are extracted from here
 	 */
-	public void storeResult() {
-//		String result = node.getKey() + ": ";
-//		for(String entry : node.getValue()) {
-//			result += entry + " ";
-//		}
-//		result += "\n";
-//		results.add(result);
+	public void storeResult(String result) {
+		results.add(result + "\n");
 	}
-	
-	/**
-	 * Store the sum of the contents in the array 
-	 * @param myArrayList
-	 * @param fp
-	 */
-//	public void printNodes(Node node) {
-//		traverseTree(node);
-//	}
-//	
-//	/**
-//	 * Inorder traversal of the tree
-//	 * @param node start node
-//	 */
-//	public void traverseTree(Node node) {
-//		if(node != null ) {
-//			traverseTree(node.getLeft());
-//			storeResult(node);
-//			traverseTree(node.getRight());
-//		}
-//	}
 }
 

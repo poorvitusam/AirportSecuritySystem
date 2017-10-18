@@ -3,15 +3,16 @@ package src.airportSecurityState.airportStates;
 import java.util.ArrayList;
 
 import src.airportSecurityState.util.FileProcessor;
+import src.airportSecurityState.util.Results;
 
-public class SecurityFactors {
+public class AirportSecurityProcess {
 	private int total_num_of_travellers;
 	private int total_num_of_days;
 	private int total_num_of_prohibited_items;
 	private int day;
 	private ArrayList<String> prohibited_items=new ArrayList<String>();
 	
-	public SecurityFactors(FileProcessor fp, SecurityState state) {
+	public AirportSecurityProcess(FileProcessor fp, SecurityState state, Results results) {
 		prohibited_items.add("Gun");
 		prohibited_items.add("NailCutter");
 		prohibited_items.add("Blade");
@@ -29,8 +30,13 @@ public class SecurityFactors {
 			if(prohibited_items.contains(item)) {
 				total_num_of_prohibited_items++;
 			}
-			state.tightenOrLoosenSecurity(total_num_of_travellers, 
-					total_num_of_days, total_num_of_prohibited_items);
+			securityProcess(state, results);
 		}
+	}
+	
+	public void securityProcess(SecurityState state, Results results) {
+		String finalState = state.tightenOrLoosenSecurity(total_num_of_travellers, 
+				total_num_of_days, total_num_of_prohibited_items);
+		results.storeResult(finalState);
 	}
 }
