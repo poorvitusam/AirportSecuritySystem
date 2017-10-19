@@ -28,13 +28,13 @@ public class AirportSecurityProcess {
 			if (new_day != day) {
 				total_num_of_days ++;
 				day = new_day;
-				MyLogger.writeMessage("New Day Occured ", MyLogger.DebugLevel.FROM_RESULTS);
+				MyLogger.writeMessage("New Day Occured :: Day " + day, MyLogger.DebugLevel.FROM_RESULTS);
 			}
 			index = nextLine.lastIndexOf(":");
 			String item = nextLine.substring(index+1);
 			if(prohibited_items.contains(item)) {
 				total_num_of_prohibited_items++;
-				MyLogger.writeMessage("Prohibited Item Found ", MyLogger.DebugLevel.IN_RESULTS);
+				MyLogger.writeMessage("Prohibited Item Found :: " + item, MyLogger.DebugLevel.IN_RESULTS);
 			}
 			total_num_of_travellers++;
 			securityProcess(state, results);

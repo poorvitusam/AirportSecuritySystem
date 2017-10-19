@@ -9,7 +9,6 @@ public class LowRisk implements AirportStateI{
 	}
 	
 	public AirportStateI tightenOrLoosenSecurity(int avg_traffic_per_day, int avg_prohibited_items) {
-		AirportStateI previousState  = currentState;
 		if(0 <= avg_traffic_per_day && avg_traffic_per_day < 4 ||
 				0 <= avg_prohibited_items && avg_prohibited_items < 1) {
 			
@@ -24,7 +23,7 @@ public class LowRisk implements AirportStateI{
 		}
 		
 		if(!(currentState instanceof LowRisk)) {
-			MyLogger.writeMessage("State Changed ", MyLogger.DebugLevel.IN_RUN);
+			MyLogger.writeMessage("State Changed :: Previous State was LowRisk", MyLogger.DebugLevel.IN_RUN);
 		}
 		return currentState;
 	}

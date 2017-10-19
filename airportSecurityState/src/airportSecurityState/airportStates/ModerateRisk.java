@@ -23,7 +23,7 @@ public class ModerateRisk implements AirportStateI{
 		}
 		
 		if(!(currentState instanceof ModerateRisk)) {
-			MyLogger.writeMessage("State Changed ", MyLogger.DebugLevel.IN_RUN);
+			MyLogger.writeMessage("State Changed :: Previous State was ModerateRisk", MyLogger.DebugLevel.IN_RUN);
 		}
 		return currentState;
 	}
