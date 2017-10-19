@@ -3,6 +3,7 @@ package src.airportSecurityState.airportStates;
 import java.util.ArrayList;
 
 import src.airportSecurityState.util.FileProcessor;
+import src.airportSecurityState.util.MyLogger;
 import src.airportSecurityState.util.Results;
 
 public class AirportSecurityProcess {
@@ -13,6 +14,8 @@ public class AirportSecurityProcess {
 	private ArrayList<String> prohibited_items=new ArrayList<String>();
 	
 	public AirportSecurityProcess(FileProcessor fp, SecurityStateContext state, Results results) {
+		MyLogger.writeMessage("Contructor of AirportSecurityProcess ", MyLogger.DebugLevel.CONSTRUCTOR);
+		
 		prohibited_items.add("Gun");
 		prohibited_items.add("NailCutter");
 		prohibited_items.add("Blade");
@@ -25,11 +28,13 @@ public class AirportSecurityProcess {
 			if (new_day != day) {
 				total_num_of_days ++;
 				day = new_day;
+				MyLogger.writeMessage("New Day Occured ", MyLogger.DebugLevel.FROM_RESULTS);
 			}
 			index = nextLine.lastIndexOf(":");
 			String item = nextLine.substring(index+1);
 			if(prohibited_items.contains(item)) {
 				total_num_of_prohibited_items++;
+				MyLogger.writeMessage("Prohibited Item Found ", MyLogger.DebugLevel.IN_RESULTS);
 			}
 			total_num_of_travellers++;
 			securityProcess(state, results);

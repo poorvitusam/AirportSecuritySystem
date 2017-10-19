@@ -19,7 +19,7 @@ public class FileProcessor {
 	 * @param outputFile
 	 */
 	public FileProcessor(String file, String mode, String name) {
-		
+		MyLogger.writeMessage("Contructor of SecurityStateContext ", MyLogger.DebugLevel.CONSTRUCTOR);
 		try {
 			if (mode.equals("read")) {
 				FileReader fileReader = new FileReader(file);
