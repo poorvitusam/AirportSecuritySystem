@@ -9,7 +9,7 @@ public class AirportSecurityProcess {
 	private int total_num_of_travellers;
 	private int total_num_of_days;
 	private int total_num_of_prohibited_items;
-	private int day;
+	private int day = 0;
 	private ArrayList<String> prohibited_items=new ArrayList<String>();
 	
 	public AirportSecurityProcess(FileProcessor fp, SecurityStateContext state, Results results) {
@@ -24,22 +24,24 @@ public class AirportSecurityProcess {
 			int new_day = Integer.parseInt(nextLine.substring(4, index));
 			if (new_day != day) {
 				total_num_of_days ++;
+				day = new_day;
 			}
 			index = nextLine.lastIndexOf(":");
 			String item = nextLine.substring(index+1);
 			if(prohibited_items.contains(item)) {
 				total_num_of_prohibited_items++;
 			}
+			total_num_of_travellers++;
 			securityProcess(state, results);
 		}
 	}
 	
 	public int getAverageTrafficPerDay() {
-		return total_num_of_travellers * total_num_of_days;
+		return total_num_of_travellers / total_num_of_days;
 	}
 	
 	public int getAverageProhibitedItemsPerDay() {
-		return total_num_of_prohibited_items * total_num_of_days;
+		return total_num_of_prohibited_items / total_num_of_days;
 	}
 	
 	public void securityProcess(SecurityStateContext state, Results results) {
